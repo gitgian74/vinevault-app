@@ -1,6 +1,18 @@
-# 🍷 VineVault - Secure Wine Investment Platform
+# 🍷 VineVault™ - Premium Vineyard Heritage Marketplace
 
-A modern, secure wine investment platform built with Next.js, TypeScript, Appwrite, and deployed on Vercel. VineVault enables fractional ownership of premium vineyards worldwide with blockchain-certified ownership.
+> **Curate Your Vineyard Heritage**
+
+An institutional-grade wine investment platform featuring blockchain-secured provenance, authenticated vineyard partnerships, and premium terroir asset management. Built with Next.js 14, TypeScript, Appwrite, and deployed on Vercel.
+
+## 🏆 **Professional Investment Platform**
+
+VineVault represents the convergence of centuries-old viticultural expertise with cutting-edge blockchain technology. Our mission transcends investment—we are custodians of terroir heritage, ensuring authenticity and provenance for discerning collectors worldwide.
+
+### **Premium Features**
+- ✅ **Certified Premium Terroir Investments™** - Blockchain-verified authenticity
+- ✅ **Institutional-Grade Security** - Multi-signature custody with $10M insurance coverage  
+- ✅ **Accredited Investor Portal** - Minimum investment $999, target 12-18% annual returns
+- ✅ **Master Sommelier Committee** - 200+ years combined expertise in wine curation
 
 ## ✨ Features
 
