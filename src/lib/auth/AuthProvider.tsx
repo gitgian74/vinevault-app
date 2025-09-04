@@ -253,10 +253,16 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
       
       const userId = user?.$id;
       
-      // Delete current session using authService
-      await authService.logout();
-      
+      // Always clear user state first to ensure UI updates
       setUser(null);
+      
+      try {
+        // Delete current session using authService
+        await authService.logout();
+      } catch (sessionError) {
+        // Log but don't prevent logout if session deletion fails
+        console.warn('Session deletion failed during logout:', sessionError);
+      }
       
       showToast({
         type: 'success',
@@ -265,12 +271,18 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
       });
     } catch (error: any) {
       const errorMessage = handleAppwriteError(error);
+      
+      // Even if there's an error, clear the user state
+      setUser(null);
+      
       showToast({
         type: 'error',
-        title: 'Logout failed',
-        message: errorMessage,
+        title: 'Logout completed',
+        message: 'You have been logged out (with some issues).',
       });
-      throw new Error(errorMessage);
+      
+      // Don't throw error to allow redirect to proceed
+      console.warn('Logout completed with errors:', errorMessage);
     } finally {
       setIsLoading(false);
     }
