@@ -35,10 +35,26 @@ export const LanguageSwitcher: React.FC<LanguageSwitcherProps> = ({ className = 
   const handleLanguageChange = (newLocale: Locale) => {
     setIsOpen(false);
     
-    // Simple redirect using window.location for reliability
-    const currentUrl = window.location.href;
-    const newUrl = currentUrl.replace(`/${locale}`, `/${newLocale}`);
+    // Get current pathname without locale
+    const currentPath = pathname;
     
+    // Remove current locale from path if present
+    let pathWithoutLocale = currentPath;
+    if (currentPath.startsWith(`/${locale}`)) {
+      pathWithoutLocale = currentPath.slice(locale.length + 1) || '/';
+    }
+    
+    // Build new URL based on whether it's the default locale
+    let newUrl;
+    if (newLocale === 'it') {
+      // Italian (default) doesn't need prefix
+      newUrl = pathWithoutLocale === '/' ? '/' : pathWithoutLocale;
+    } else {
+      // Other languages need prefix
+      newUrl = `/${newLocale}${pathWithoutLocale === '/' ? '' : pathWithoutLocale}`;
+    }
+    
+    // Use window.location for full page reload to ensure proper locale loading
     window.location.href = newUrl;
   };
 
