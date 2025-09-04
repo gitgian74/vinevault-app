@@ -3,16 +3,19 @@ import { locales, defaultLocale } from './i18n/config';
 
 export default createMiddleware({
   // A list of all locales that are supported
-  locales,
+  locales: ['it', 'en', 'de', 'zh', 'ja', 'ru', 'ar'],
   
-  // Used when no locale matches
-  defaultLocale,
+  // Used when no locale matches - MUST be Italian
+  defaultLocale: 'it',
   
-  // Hide default locale prefix but show others
-  localePrefix: 'as-needed'
+  // Hide default locale prefix for Italian only
+  localePrefix: 'as-needed',
+  
+  // Disable automatic locale detection based on browser
+  localeDetection: false
 });
 
 export const config = {
-  // Match only internationalized pathnames
-  matcher: ['/', '/(de|en|it|zh|ja|ru|ar)/:path*']
+  // Match all pages except static files and api routes
+  matcher: ['/((?!api|_next|_vercel|.*\\..*).*)']
 };
