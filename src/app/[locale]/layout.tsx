@@ -1,4 +1,5 @@
 import type { Metadata } from 'next';
+import { Inter, Playfair_Display } from 'next/font/google';
 import '../globals.css';
 import { AuthProvider } from '@/lib/auth/AuthProvider';
 import { ToastProvider } from '@/components/ui/ToastProvider';
@@ -7,7 +8,19 @@ import { getMessages } from 'next-intl/server';
 import { notFound } from 'next/navigation';
 import { locales, languageConfig } from '@/i18n/config';
 
-// Font variables are inherited from parent layout
+const inter = Inter({ 
+  subsets: ['latin'],
+  variable: '--font-inter',
+  display: 'swap',
+  preload: true,
+});
+
+const playfair = Playfair_Display({ 
+  subsets: ['latin'],
+  variable: '--font-playfair',
+  display: 'swap',
+  preload: false,
+});
 
 export const metadata: Metadata = {
   title: 'VineVault - Premium Wine Investment Platform',
@@ -82,7 +95,7 @@ export default async function LocaleLayout({
         <meta name="msapplication-TileColor" content="#7c3aed" />
         <meta name="msapplication-config" content="/browserconfig.xml" />
       </head>
-      <body suppressHydrationWarning>
+      <body className={`${inter.variable} ${playfair.variable} font-sans`} suppressHydrationWarning>
         <NextIntlClientProvider messages={messages}>
           <ToastProvider>
             <AuthProvider>

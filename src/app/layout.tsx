@@ -24,11 +24,7 @@ export default function RootLayout({
 }: {
   children: React.ReactNode;
 }) {
-  return (
-    <html suppressHydrationWarning>
-      <body className={`${inter.variable} ${playfair.variable} font-sans`} suppressHydrationWarning>
-        {children}
-      </body>
-    </html>
-  );
+  // This root layout only provides font variables to the locale layout
+  // The actual html/body structure is handled by [locale]/layout.tsx
+  return children;
 }
