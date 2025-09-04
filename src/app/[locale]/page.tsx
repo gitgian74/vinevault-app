@@ -134,7 +134,7 @@ export default function HomePage() {
               
               {user ? (
                 <Link
-                  href="/dashboard"
+                  href={`/${locale}/dashboard`}
                   className="btn-primary"
                 >
                   {t('navigation.dashboard')}
@@ -142,13 +142,13 @@ export default function HomePage() {
               ) : (
                 <div className="flex items-center space-x-3">
                   <Link
-                    href="/auth/login"
+                    href={`/${locale}/auth/login`}
                     className="text-white/80 hover:text-white transition-colors px-4 py-2"
                   >
                     {t('navigation.login')}
                   </Link>
                   <Link
-                    href="/auth/register"
+                    href={`/${locale}/auth/register`}
                     className="btn-primary"
                   >
                     {t('navigation.register')}
@@ -191,7 +191,7 @@ export default function HomePage() {
 
             <div className="flex flex-col sm:flex-row items-center justify-center space-y-4 sm:space-y-0 sm:space-x-6 mb-12">
               <Link
-                href="/auth/register"
+                href={`/${locale}/auth/register`}
                 className="btn-primary text-lg px-8 py-4"
               >
                 {t('hero.cta_primary')}
@@ -279,7 +279,7 @@ export default function HomePage() {
             {t('cta.subtitle')}
           </p>
           <Link
-            href="/auth/register"
+            href={`/${locale}/auth/register`}
             className="btn-secondary text-lg px-8 py-4"
           >
             {t('cta.button')}

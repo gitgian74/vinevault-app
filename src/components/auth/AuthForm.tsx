@@ -2,6 +2,7 @@
 
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
+import { useLocale } from 'next-intl';
 import Link from 'next/link';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
@@ -61,6 +62,7 @@ export const AuthForm: React.FC<AuthFormProps> = ({ mode }) => {
   });
 
   const router = useRouter();
+  const locale = useLocale();
   const { login, register } = useAuth();
 
   const {
@@ -89,7 +91,7 @@ export const AuthForm: React.FC<AuthFormProps> = ({ mode }) => {
       if (mode === 'login') {
         console.log('Attempting login...');
         await login(data.email, data.password);
-        router.push('/dashboard');
+        router.push(`/${locale}/dashboard`);
       } else {
         const registerData = data as RegisterFormData;
         console.log('Attempting registration for:', registerData.email);
@@ -98,7 +100,7 @@ export const AuthForm: React.FC<AuthFormProps> = ({ mode }) => {
         
         console.log('Registration successful, redirecting to login...');
         // Always redirect to login after successful registration
-        router.push('/auth/login');
+        router.push(`/${locale}/auth/login`);
       }
     } catch (error) {
       console.error('Authentication error:', error);
@@ -266,11 +268,11 @@ export const AuthForm: React.FC<AuthFormProps> = ({ mode }) => {
                 />
                 <label htmlFor="acceptTerms" className="text-sm text-white/80">
                   I agree to the{' '}
-                  <Link href="/terms" className="text-gold-400 hover:text-gold-300 underline">
+                  <Link href={`/${locale}/terms`} className="text-gold-400 hover:text-gold-300 underline">
                     Terms of Service
                   </Link>{' '}
                   and{' '}
-                  <Link href="/privacy" className="text-gold-400 hover:text-gold-300 underline">
+                  <Link href={`/${locale}/privacy`} className="text-gold-400 hover:text-gold-300 underline">
                     Privacy Policy
                   </Link>
                 </label>
@@ -304,7 +306,7 @@ export const AuthForm: React.FC<AuthFormProps> = ({ mode }) => {
             {!isRegisterMode && (
               <div className="text-center">
                 <Link 
-                  href="/auth/forgot-password" 
+                  href={`/${locale}/auth/forgot-password`} 
                   className="text-gold-400 hover:text-gold-300 text-sm"
                 >
                   Forgot your password?
@@ -317,7 +319,7 @@ export const AuthForm: React.FC<AuthFormProps> = ({ mode }) => {
               <p className="text-white/80">
                 {isRegisterMode ? 'Already have an account?' : "Don't have an account?"}{' '}
                 <Link 
-                  href={isRegisterMode ? '/auth/login' : '/auth/register'}
+                  href={isRegisterMode ? `/${locale}/auth/login` : `/${locale}/auth/register`}
                   className="text-gold-400 hover:text-gold-300 font-medium"
                 >
                   {isRegisterMode ? 'Sign In' : 'Create Account'}
