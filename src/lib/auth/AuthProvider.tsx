@@ -54,6 +54,10 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
     // In a real implementation, you would fetch additional user data from your users collection
     const accountData = await authService.getCurrentUser();
     
+    if (!accountData) {
+      throw new Error('No account data available');
+    }
+    
     // Mock user profile data - replace with actual database fetch
     const mockUserData: User = {
       $id: accountData.$id,
@@ -114,7 +118,7 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
           $createdAt: new Date().toISOString(),
           $updatedAt: new Date().toISOString(),
           email: email,
-          name: email.split('@')[0],
+          name: email.split('@')[0] || 'User',
           emailVerification: true,
           preferences: {
             theme: 'light',
@@ -350,7 +354,9 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
   const updatePassword = async (password: string, oldPassword: string): Promise<void> => {
     try {
       setIsLoading(true);
-      await account.updatePassword(password, oldPassword);
+      // Note: This would need to be implemented in authService
+      // await authService.updatePassword(password, oldPassword);
+      throw new Error('Password update not implemented yet');
       
       console.log('Password changed for user:', user?.$id);
       
