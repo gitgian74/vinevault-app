@@ -202,20 +202,31 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
         const newUser = await authService.createAccount(email, password, name);
         console.log('AuthProvider: Account created successfully', newUser.$id);
         
-        // Send verification email - this might be causing the hang
+        // Create session immediately after account creation to get proper permissions
+        console.log('AuthProvider: Creating session after registration...');
+        await authService.login(email, password);
+        
+        // Get user data and set in state
+        const currentUser = await authService.getCurrentUser();
+        if (currentUser) {
+          const userData = await fetchUserProfile(currentUser.$id);
+          setUser(userData);
+        }
+        
+        // Send verification email - now with proper session/permissions
         try {
           console.log('AuthProvider: Sending verification email...');
           await authService.sendVerification();
           console.log('AuthProvider: Verification email sent successfully');
         } catch (verificationError) {
           console.warn('AuthProvider: Verification email failed, but continuing:', verificationError);
-          // Don't throw - account was created successfully
+          // Don't throw - account was created and logged in successfully
         }
         
         showToast({
           type: 'success',
           title: 'Registration successful!',
-          message: 'Account created successfully. You can now login.',
+          message: 'Account created and logged in successfully. Check your email for verification.',
         });
       } catch (appwriteError: any) {
         console.error('AuthProvider: Appwrite registration failed:', appwriteError);
