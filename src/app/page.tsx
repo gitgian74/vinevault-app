@@ -90,26 +90,10 @@ const stats = [
 export default function HomePage() {
   const { isAuthenticated, user } = useAuth();
   const [mounted, setMounted] = useState(false);
-  const [pingResult, setPingResult] = useState<string>('');
-  const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
     setMounted(true);
   }, []);
-
-  const sendPing = async () => {
-    setIsLoading(true);
-    try {
-      const response = await fetch('/api/ping');
-      const data = await response.json();
-      setPingResult(`✅ Ping successful! VineVault API is connected to Appwrite.`);
-      console.log('Ping response:', data);
-    } catch (error) {
-      setPingResult(`❌ Ping failed: ${error instanceof Error ? error.message : 'Unknown error'}`);
-    } finally {
-      setIsLoading(false);
-    }
-  };
 
   if (!mounted) {
     return null; // Prevent hydration mismatch
@@ -309,32 +293,6 @@ export default function HomePage() {
             </div>
           </motion.div>
 
-          {/* Appwrite Connection Test - Dev Only */}
-          {process.env.NODE_ENV === 'development' && (
-            <motion.div 
-              initial={{ opacity: 0, y: 30 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 0.5 }}
-              className="mt-16 p-6 bg-white/10 rounded-lg backdrop-blur-sm max-w-md mx-auto border border-white/20"
-            >
-              <h3 className="text-lg font-semibold text-white mb-4">🔧 Appwrite Connection Test</h3>
-              <button
-                onClick={sendPing}
-                disabled={isLoading}
-                className="btn-secondary w-full mb-3"
-              >
-                {isLoading ? 'Testing...' : '📡 Send a Ping'}
-              </button>
-              {pingResult && (
-                <p className="text-sm text-white/90 bg-black/20 p-3 rounded">
-                  {pingResult}
-                </p>
-              )}
-              <p className="text-xs text-white/70 mt-2">
-                Running on: http://localhost:5173
-              </p>
-            </motion.div>
-          )}
         </div>
 
         {/* Scroll Indicator */}
