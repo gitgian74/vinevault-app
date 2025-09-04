@@ -1,0 +1,86 @@
+{
+  "common": {
+    "loading": "Laden...",
+    "error": "Fehler",
+    "success": "Erfolg",
+    "cancel": "Abbrechen",
+    "confirm": "Bestätigen",
+    "save": "Speichern",
+    "edit": "Bearbeiten",
+    "delete": "Löschen",
+    "back": "Zurück",
+    "next": "Weiter",
+    "previous": "Vorherige",
+    "close": "Schließen",
+    "open": "Öffnen"
+  },
+  "navigation": {
+    "home": "Startseite",
+    "about": "Über uns",
+    "how_it_works": "Wie es funktioniert",
+    "vineyards": "Weingüter",
+    "pricing": "Preise",
+    "contact": "Kontakt",
+    "login": "Anmelden",
+    "register": "Registrieren",
+    "dashboard": "Dashboard",
+    "profile": "Profil",
+    "settings": "Einstellungen",
+    "logout": "Abmelden"
+  },
+  "hero": {
+    "title": "Investieren Sie in Premium-Weingüter mit Blockchain-Zertifizierung",
+    "subtitle": "Besitzen Sie Bruchteile von Weltklasse-Weingütern und erzielen Sie Renditen durch Weinwertsteigerung, Mieteinnahmen und exklusiven Zugang zu Premium-Flaschen.",
+    "cta_primary": "Jetzt Investieren",
+    "cta_secondary": "Mehr Erfahren",
+    "trust_badge": "Blockchain-Zertifizierter Besitz"
+  },
+  "features": {
+    "title": "Warum VineVault Wählen?",
+    "subtitle": "Erleben Sie die Zukunft von Weininvestitionen mit unserer umfassenden Plattform",
+    "blockchain_title": "Blockchain-Zertifiziert",
+    "blockchain_description": "Jeder Weingutsanteil ist durch unveränderliche Blockchain-Technologie gesichert und gewährleistet transparenten und verifizierbaren Besitz.",
+    "fractional_title": "Anteilsbesitz",
+    "fractional_description": "Beginnen Sie mit nur 500€ zu investieren. Besitzen Sie Anteile an Premium-Weingütern ohne massive Kapitalanforderungen.",
+    "returns_title": "Mehrere Einnahmequellen",
+    "returns_description": "Verdienen Sie durch Weinwertsteigerung, Weingut-Mieteinnahmen und exklusiven Zugang zu Premium-Vintage-Flaschen.",
+    "expert_title": "Expertenkuration",
+    "expert_description": "Unser Sommelier-Team wählt nur die besten Weingüter mit bewährter Erfolgsbilanz und Wachstumspotential aus.",
+    "liquidity_title": "Verbesserte Liquidität",
+    "liquidity_description": "Handeln Sie Ihre Weingutsanteile auf unserem Sekundärmarkt oder halten Sie langfristig für maximale Wertsteigerung.",
+    "global_title": "Globaler Zugang",
+    "global_description": "Zugang zu Premium-Weingütern aus Bordeaux, Toskana, Napa Valley und anderen weltberühmten Weinregionen."
+  },
+  "stats": {
+    "total_value": "Gesamtes Verwaltetes Vermögen",
+    "active_investors": "Aktive Investoren",
+    "vineyards": "Partner-Weingüter",
+    "avg_returns": "Durchschnittliche Jahresrenditen"
+  },
+  "cta": {
+    "title": "Bereit, Ihre Weininvestment-Reise zu Beginnen?",
+    "subtitle": "Schließen Sie sich Tausenden von Investoren an, die Vermögen durch Premium-Weingutsbesitz aufbauen",
+    "button": "Heute Beginnen"
+  },
+  "footer": {
+    "company": "Unternehmen",
+    "about": "Über VineVault",
+    "careers": "Karrieren",
+    "press": "Presse",
+    "blog": "Blog",
+    "invest": "Investieren",
+    "how_it_works": "Wie es funktioniert",
+    "vineyards": "Weingüter",
+    "returns": "Renditen",
+    "legal": "Rechtliches",
+    "terms": "Nutzungsbedingungen",
+    "privacy": "Datenschutz",
+    "cookies": "Cookie-Richtlinie",
+    "support": "Support",
+    "help_center": "Hilfezentrum",
+    "contact": "Kontakt",
+    "faq": "FAQ",
+    "copyright": "© 2024 VineVault. Alle Rechte vorbehalten.",
+    "disclaimer": "Weininvestitionen beinhalten Risiken. Vergangene Performance garantiert keine zukünftigen Renditen."
+  }
+}

@@ -1,0 +1,86 @@
+{
+  "common": {
+    "loading": "読み込み中...",
+    "error": "エラー",
+    "success": "成功",
+    "cancel": "キャンセル",
+    "confirm": "確認",
+    "save": "保存",
+    "edit": "編集",
+    "delete": "削除",
+    "back": "戻る",
+    "next": "次へ",
+    "previous": "前へ",
+    "close": "閉じる",
+    "open": "開く"
+  },
+  "navigation": {
+    "home": "ホーム",
+    "about": "私たちについて",
+    "how_it_works": "仕組み",
+    "vineyards": "ワイナリー",
+    "pricing": "価格",
+    "contact": "お問い合わせ",
+    "login": "ログイン",
+    "register": "新規登録",
+    "dashboard": "ダッシュボード",
+    "profile": "プロフィール",
+    "settings": "設定",
+    "logout": "ログアウト"
+  },
+  "hero": {
+    "title": "ブロックチェーン認証付きプレミアムワイナリーへの投資",
+    "subtitle": "世界クラスのワイナリーの株式を所有し、ワインの価値上昇、賃貸収入、プレミアムボトルへの独占アクセスを通じて収益を得る。",
+    "cta_primary": "投資を開始",
+    "cta_secondary": "詳細を見る",
+    "trust_badge": "ブロックチェーン認証所有権"
+  },
+  "features": {
+    "title": "VineVaultを選ぶ理由",
+    "subtitle": "包括的なプラットフォームでワイン投資の未来を体験",
+    "blockchain_title": "ブロックチェーン認証",
+    "blockchain_description": "すべてのワイナリー株式は不変のブロックチェーン技術で保護され、透明で検証可能な所有権を保証します。",
+    "fractional_title": "部分所有権",
+    "fractional_description": "わずか500ドルから投資を開始。巨額の資本要件なしでプレミアムワイナリーの株式を所有。",
+    "returns_title": "複数の収益源",
+    "returns_description": "ワインの価値上昇、ワイナリー賃貸収入、プレミアムヴィンテージボトルへの独占アクセスを通じて収益を得る。",
+    "expert_title": "専門家による厳選",
+    "expert_description": "ソムリエチームが実績のある成長ポテンシャルを持つ最高のワイナリーのみを選定。",
+    "liquidity_title": "流動性の向上",
+    "liquidity_description": "セカンダリーマーケットでワイナリー株式を取引するか、最大の価値上昇のため長期保有。",
+    "global_title": "グローバルアクセス",
+    "global_description": "ボルドー、トスカーナ、ナパバレー、その他世界的に有名なワイン地域のプレミアムワイナリーにアクセス。"
+  },
+  "stats": {
+    "total_value": "総運用資産",
+    "active_investors": "アクティブ投資家",
+    "vineyards": "パートナーワイナリー",
+    "avg_returns": "平均年間収益率"
+  },
+  "cta": {
+    "title": "ワイン投資の旅を始める準備はできましたか？",
+    "subtitle": "プレミアムワイナリー所有権を通じて富を築いている何千人もの投資家に参加",
+    "button": "今日始める"
+  },
+  "footer": {
+    "company": "会社",
+    "about": "VineVaultについて",
+    "careers": "キャリア",
+    "press": "プレス",
+    "blog": "ブログ",
+    "invest": "投資",
+    "how_it_works": "仕組み",
+    "vineyards": "ワイナリー",
+    "returns": "収益",
+    "legal": "法的事項",
+    "terms": "利用規約",
+    "privacy": "プライバシーポリシー",
+    "cookies": "Cookieポリシー",
+    "support": "サポート",
+    "help_center": "ヘルプセンター",
+    "contact": "お問い合わせ",
+    "faq": "よくある質問",
+    "copyright": "© 2024 VineVault. 無断転載を禁じます。",
+    "disclaimer": "ワイン投資にはリスクが伴います。過去のパフォーマンスは将来の収益を保証するものではありません。"
+  }
+}

@@ -1,0 +1,86 @@
+{
+  "common": {
+    "loading": "加载中...",
+    "error": "错误",
+    "success": "成功",
+    "cancel": "取消",
+    "confirm": "确认",
+    "save": "保存",
+    "edit": "编辑",
+    "delete": "删除",
+    "back": "返回",
+    "next": "下一步",
+    "previous": "上一步",
+    "close": "关闭",
+    "open": "打开"
+  },
+  "navigation": {
+    "home": "首页",
+    "about": "关于我们",
+    "how_it_works": "如何运作",
+    "vineyards": "酒庄",
+    "pricing": "价格",
+    "contact": "联系我们",
+    "login": "登录",
+    "register": "注册",
+    "dashboard": "仪表板",
+    "profile": "个人资料",
+    "settings": "设置",
+    "logout": "退出"
+  },
+  "hero": {
+    "title": "投资区块链认证的优质酒庄",
+    "subtitle": "拥有世界级酒庄的份额，通过葡萄酒升值、租赁收入和独家优质葡萄酒获得回报。",
+    "cta_primary": "开始投资",
+    "cta_secondary": "了解更多",
+    "trust_badge": "区块链认证所有权"
+  },
+  "features": {
+    "title": "为什么选择VineVault？",
+    "subtitle": "通过我们的综合平台体验葡萄酒投资的未来",
+    "blockchain_title": "区块链认证",
+    "blockchain_description": "每个酒庄份额都由不可篡改的区块链技术保护，确保透明且可验证的所有权。",
+    "fractional_title": "份额所有权",
+    "fractional_description": "只需500美元即可开始投资。无需巨额资本要求即可拥有优质酒庄份额。",
+    "returns_title": "多重收入来源",
+    "returns_description": "通过葡萄酒升值、酒庄租赁收入和独家优质年份葡萄酒获得收益。",
+    "expert_title": "专家策划",
+    "expert_description": "我们的侍酒师团队只选择具有成熟业绩记录和增长潜力的最优秀酒庄。",
+    "liquidity_title": "增强流动性",
+    "liquidity_description": "在我们的二级市场交易您的酒庄份额或长期持有以获得最大升值。",
+    "global_title": "全球准入",
+    "global_description": "接触波尔多、托斯卡纳、纳帕谷和其他世界知名葡萄酒产区的优质酒庄。"
+  },
+  "stats": {
+    "total_value": "总管理资产",
+    "active_investors": "活跃投资者",
+    "vineyards": "合作酒庄",
+    "avg_returns": "平均年收益率"
+  },
+  "cta": {
+    "title": "准备开始您的葡萄酒投资之旅？",
+    "subtitle": "加入数千名通过优质酒庄所有权建立财富的投资者",
+    "button": "今天开始"
+  },
+  "footer": {
+    "company": "公司",
+    "about": "关于VineVault",
+    "careers": "职业机会",
+    "press": "新闻",
+    "blog": "博客",
+    "invest": "投资",
+    "how_it_works": "如何运作",
+    "vineyards": "酒庄",
+    "returns": "收益",
+    "legal": "法律",
+    "terms": "服务条款",
+    "privacy": "隐私政策",
+    "cookies": "Cookie政策",
+    "support": "支持",
+    "help_center": "帮助中心",
+    "contact": "联系我们",
+    "faq": "常见问题",
+    "copyright": "© 2024 VineVault. 版权所有。",
+    "disclaimer": "葡萄酒投资涉及风险。过往表现不保证未来收益。"
+  }
+}

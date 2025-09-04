@@ -1,0 +1,86 @@
+{
+  "common": {
+    "loading": "Loading...",
+    "error": "Error",
+    "success": "Success",
+    "cancel": "Cancel",
+    "confirm": "Confirm",
+    "save": "Save",
+    "edit": "Edit",
+    "delete": "Delete",
+    "back": "Back",
+    "next": "Next",
+    "previous": "Previous",
+    "close": "Close",
+    "open": "Open"
+  },
+  "navigation": {
+    "home": "Home",
+    "about": "About",
+    "how_it_works": "How It Works",
+    "vineyards": "Vineyards",
+    "pricing": "Pricing",
+    "contact": "Contact",
+    "login": "Login",
+    "register": "Sign Up",
+    "dashboard": "Dashboard",
+    "profile": "Profile",
+    "settings": "Settings",
+    "logout": "Logout"
+  },
+  "hero": {
+    "title": "Invest in Premium Vineyards with Blockchain Certification",
+    "subtitle": "Own fractional shares of world-class vineyards and earn returns through wine appreciation, rental income, and exclusive access to premium bottles.",
+    "cta_primary": "Start Investing",
+    "cta_secondary": "Learn More",
+    "trust_badge": "Blockchain-Certified Ownership"
+  },
+  "features": {
+    "title": "Why Choose VineVault?",
+    "subtitle": "Experience the future of wine investment with our comprehensive platform",
+    "blockchain_title": "Blockchain Certified",
+    "blockchain_description": "Every vineyard share is secured with immutable blockchain technology, ensuring transparent and verifiable ownership.",
+    "fractional_title": "Fractional Ownership",
+    "fractional_description": "Start investing with as little as $500. Own shares of premium vineyards without the massive capital requirements.",
+    "returns_title": "Multiple Revenue Streams",
+    "returns_description": "Earn through wine appreciation, vineyard rental income, and exclusive access to premium vintage bottles.",
+    "expert_title": "Expert Curation",
+    "expert_description": "Our sommelier team selects only the finest vineyards with proven track records and growth potential.",
+    "liquidity_title": "Enhanced Liquidity",
+    "liquidity_description": "Trade your vineyard shares on our secondary market or hold long-term for maximum appreciation.",
+    "global_title": "Global Access",
+    "global_description": "Access premium vineyards from Bordeaux, Tuscany, Napa Valley, and other world-renowned wine regions."
+  },
+  "stats": {
+    "total_value": "Total Assets Under Management",
+    "active_investors": "Active Investors",
+    "vineyards": "Partner Vineyards",
+    "avg_returns": "Average Annual Returns"
+  },
+  "cta": {
+    "title": "Ready to Start Your Wine Investment Journey?",
+    "subtitle": "Join thousands of investors who are building wealth through premium vineyard ownership",
+    "button": "Get Started Today"
+  },
+  "footer": {
+    "company": "Company",
+    "about": "About VineVault",
+    "careers": "Careers",
+    "press": "Press",
+    "blog": "Blog",
+    "invest": "Invest",
+    "how_it_works": "How It Works",
+    "vineyards": "Vineyards", 
+    "returns": "Returns",
+    "legal": "Legal",
+    "terms": "Terms of Service",
+    "privacy": "Privacy Policy",
+    "cookies": "Cookie Policy",
+    "support": "Support",
+    "help_center": "Help Center",
+    "contact": "Contact Us",
+    "faq": "FAQ",
+    "copyright": "© 2024 VineVault. All rights reserved.",
+    "disclaimer": "Wine investment involves risk. Past performance does not guarantee future returns."
+  }
+}

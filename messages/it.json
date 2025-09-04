@@ -1,0 +1,86 @@
+{
+  "common": {
+    "loading": "Caricamento...",
+    "error": "Errore",
+    "success": "Successo",
+    "cancel": "Annulla",
+    "confirm": "Conferma",
+    "save": "Salva",
+    "edit": "Modifica",
+    "delete": "Elimina",
+    "back": "Indietro",
+    "next": "Avanti",
+    "previous": "Precedente",
+    "close": "Chiudi",
+    "open": "Apri"
+  },
+  "navigation": {
+    "home": "Home",
+    "about": "Chi Siamo",
+    "how_it_works": "Come Funziona",
+    "vineyards": "Vigneti",
+    "pricing": "Prezzi",
+    "contact": "Contatti",
+    "login": "Accedi",
+    "register": "Registrati",
+    "dashboard": "Dashboard",
+    "profile": "Profilo",
+    "settings": "Impostazioni",
+    "logout": "Esci"
+  },
+  "hero": {
+    "title": "Investi in Vigneti Premium con Certificazione Blockchain",
+    "subtitle": "Possiedi quote frazionarie di vigneti di classe mondiale e guadagna attraverso l'apprezzamento del vino, entrate da affitto e accesso esclusivo a bottiglie premium.",
+    "cta_primary": "Inizia a Investire",
+    "cta_secondary": "Scopri di Più",
+    "trust_badge": "Proprietà Certificata Blockchain"
+  },
+  "features": {
+    "title": "Perché Scegliere VineVault?",
+    "subtitle": "Vivi il futuro degli investimenti vinicoli con la nostra piattaforma completa",
+    "blockchain_title": "Certificato Blockchain",
+    "blockchain_description": "Ogni quota di vigneto è protetta da tecnologia blockchain immutabile, garantendo proprietà trasparente e verificabile.",
+    "fractional_title": "Proprietà Frazionaria",
+    "fractional_description": "Inizia a investire con soli 500€. Possiedi quote di vigneti premium senza enormi requisiti di capitale.",
+    "returns_title": "Flussi di Entrate Multipli",
+    "returns_description": "Guadagna attraverso l'apprezzamento del vino, entrate da affitto del vigneto e accesso esclusivo a bottiglie vintage premium.",
+    "expert_title": "Cura degli Esperti",
+    "expert_description": "Il nostro team di sommelier seleziona solo i migliori vigneti con track record comprovati e potenziale di crescita.",
+    "liquidity_title": "Liquidità Migliorata",
+    "liquidity_description": "Scambia le tue quote di vigneto sul nostro mercato secondario o mantieni a lungo termine per massimo apprezzamento.",
+    "global_title": "Accesso Globale",
+    "global_description": "Accedi a vigneti premium da Bordeaux, Toscana, Napa Valley e altre regioni vinicole di fama mondiale."
+  },
+  "stats": {
+    "total_value": "Patrimonio Totale in Gestione",
+    "active_investors": "Investitori Attivi",
+    "vineyards": "Vigneti Partner",
+    "avg_returns": "Rendimenti Annui Medi"
+  },
+  "cta": {
+    "title": "Pronto per Iniziare il Tuo Viaggio negli Investimenti Vinicoli?",
+    "subtitle": "Unisciti a migliaia di investitori che stanno costruendo ricchezza attraverso la proprietà di vigneti premium",
+    "button": "Inizia Oggi"
+  },
+  "footer": {
+    "company": "Azienda",
+    "about": "Chi È VineVault",
+    "careers": "Carriere",
+    "press": "Stampa",
+    "blog": "Blog",
+    "invest": "Investi",
+    "how_it_works": "Come Funziona",
+    "vineyards": "Vigneti",
+    "returns": "Rendimenti",
+    "legal": "Legale",
+    "terms": "Termini di Servizio",
+    "privacy": "Privacy Policy",
+    "cookies": "Cookie Policy",
+    "support": "Supporto",
+    "help_center": "Centro Assistenza",
+    "contact": "Contattaci",
+    "faq": "FAQ",
+    "copyright": "© 2024 VineVault. Tutti i diritti riservati.",
+    "disclaimer": "Gli investimenti vinicoli comportano rischi. Le performance passate non garantiscono rendimenti futuri."
+  }
+}
