@@ -90,10 +90,26 @@ const stats = [
 export default function HomePage() {
   const { isAuthenticated, user } = useAuth();
   const [mounted, setMounted] = useState(false);
+  const [pingResult, setPingResult] = useState<string>('');
+  const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
     setMounted(true);
   }, []);
+
+  const sendPing = async () => {
+    setIsLoading(true);
+    try {
+      const response = await fetch('/api/ping');
+      const data = await response.json();
+      setPingResult(`✅ Ping successful! VineVault API is connected to Appwrite.`);
+      console.log('Ping response:', data);
+    } catch (error) {
+      setPingResult(`❌ Ping failed: ${error instanceof Error ? error.message : 'Unknown error'}`);
+    } finally {
+      setIsLoading(false);
+    }
+  };
 
   if (!mounted) {
     return null; // Prevent hydration mismatch
@@ -101,38 +117,57 @@ export default function HomePage() {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-primary-900 via-wine-800 to-primary-800">
-      {/* Navigation */}
-      <nav className="relative z-10 px-6 py-6">
+      {/* Professional Navigation */}
+      <nav className="relative z-10 px-6 py-4 bg-black/20 backdrop-blur-lg border-b border-white/10">
         <div className="max-w-7xl mx-auto flex items-center justify-between">
-          <div className="flex items-center space-x-2">
-            <span className="text-2xl">🍷</span>
-            <span className="text-2xl font-bold text-white">VineVault</span>
+          {/* Premium Brand Logo */}
+          <div className="flex items-center space-x-3">
+            <div className="flex items-center space-x-2">
+              <div className="w-10 h-10 bg-gradient-to-br from-gold-400 to-gold-600 rounded-lg flex items-center justify-center">
+                <span className="text-white font-bold text-lg">V</span>
+              </div>
+              <div className="flex flex-col">
+                <span className="text-xl font-bold text-white font-serif">VineVault</span>
+                <span className="text-xs text-gold-400 tracking-wider uppercase">Premium Wine Investments</span>
+              </div>
+            </div>
           </div>
           
-          <div className="hidden md:flex items-center space-x-8">
-            <a href="#features" className="text-white/80 hover:text-white transition-colors">Features</a>
-            <a href="#vineyards" className="text-white/80 hover:text-white transition-colors">Vineyards</a>
-            <a href="#about" className="text-white/80 hover:text-white transition-colors">About</a>
-            <a href="#contact" className="text-white/80 hover:text-white transition-colors">Contact</a>
+          {/* Professional Navigation Menu */}
+          <div className="hidden lg:flex items-center space-x-10">
+            <a href="#heritage" className="text-white/90 hover:text-gold-400 transition-colors text-sm font-medium tracking-wide">Heritage</a>
+            <a href="#vineyards" className="text-white/90 hover:text-gold-400 transition-colors text-sm font-medium tracking-wide">Vineyards</a>
+            <a href="#expertise" className="text-white/90 hover:text-gold-400 transition-colors text-sm font-medium tracking-wide">Expertise</a>
+            <a href="#insights" className="text-white/90 hover:text-gold-400 transition-colors text-sm font-medium tracking-wide">Market Insights</a>
+            <a href="#about" className="text-white/90 hover:text-gold-400 transition-colors text-sm font-medium tracking-wide">About</a>
           </div>
 
+          {/* Account Section */}
           <div className="flex items-center space-x-4">
             {isAuthenticated ? (
               <>
-                <Link href="/dashboard" className="btn-secondary">
+                <div className="hidden md:flex items-center space-x-3">
+                  <div className="w-8 h-8 bg-gold-500 rounded-full flex items-center justify-center">
+                    <span className="text-white font-semibold text-sm">
+                      {user?.name?.charAt(0)?.toUpperCase() || 'U'}
+                    </span>
+                  </div>
+                  <div className="flex flex-col">
+                    <span className="text-white text-sm font-medium">{user?.name}</span>
+                    <span className="text-white/60 text-xs">Portfolio Manager</span>
+                  </div>
+                </div>
+                <Link href="/dashboard" className="btn-secondary px-6 py-2">
                   Dashboard
                 </Link>
-                <div className="text-white/80">
-                  Welcome, {user?.name}
-                </div>
               </>
             ) : (
               <>
-                <Link href="/auth/login" className="text-white/80 hover:text-white transition-colors">
-                  Login
+                <Link href="/auth/login" className="text-white/90 hover:text-gold-400 transition-colors text-sm font-medium">
+                  Member Access
                 </Link>
-                <Link href="/auth/register" className="btn-primary">
-                  Get Started
+                <Link href="/auth/register" className="btn-primary px-6 py-2">
+                  Begin Investment Journey
                 </Link>
               </>
             )}
@@ -140,72 +175,312 @@ export default function HomePage() {
         </div>
       </nav>
 
-      {/* Hero Section */}
-      <section className="relative px-6 py-20 text-center">
-        <div className="max-w-4xl mx-auto">
-          <motion.h1 
-            initial={{ opacity: 0, y: 20 }}
+      {/* Hero Section with Video Background */}
+      <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
+        {/* Video Background */}
+        <div className="absolute inset-0 w-full h-full">
+          <div className="absolute inset-0 bg-black/40 z-10"></div>
+          <video 
+            autoPlay 
+            muted 
+            loop 
+            playsInline
+            className="w-full h-full object-cover"
+            poster="https://images.unsplash.com/photo-1506377247377-2a5b3b417ebb?w=1920&h=1080&fit=crop&crop=center"
+          >
+            <source src="https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4" type="video/mp4" />
+            {/* Alternative vineyard video sources */}
+            <source src="https://sample-videos.com/zip/10/mp4/SampleVideo_1280x720_1mb.mp4" type="video/mp4" />
+          </video>
+          
+          {/* Enhanced fallback for when video doesn't load */}
+          <div className="absolute inset-0 w-full h-full bg-gradient-to-br from-primary-900 via-wine-800 to-primary-800 opacity-90">
+            <div 
+              className="w-full h-full bg-center bg-cover mix-blend-overlay opacity-60"
+              style={{
+                backgroundImage: "url('https://images.unsplash.com/photo-1506377247377-2a5b3b417ebb?w=1920&h=1080&fit=crop&crop=center')",
+              }}
+            ></div>
+          </div>
+        </div>
+
+        {/* Hero Content */}
+        <div className="relative z-20 text-center px-6 max-w-6xl mx-auto">
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
-            className="text-5xl md:text-6xl font-bold text-white mb-6 font-serif"
+            className="mb-8"
           >
-            Own Your Wine Legacy
+            <div className="inline-flex items-center gap-3 px-5 py-3 rounded-full bg-black/30 backdrop-blur-sm border border-gold-400/30 text-gold-200 text-sm font-medium mb-8">
+              <span className="w-2 h-2 bg-gold-400 rounded-full animate-pulse"></span>
+              Certified Premium Terroir Investments™
+            </div>
+          </motion.div>
+
+          <motion.h1 
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.1 }}
+            className="text-4xl md:text-6xl lg:text-7xl font-bold text-white mb-6 font-serif leading-tight"
+          >
+            Curate Your
+            <br />
+            <span className="text-transparent bg-clip-text bg-gradient-to-r from-gold-400 via-gold-500 to-gold-600">
+              Vineyard Heritage
+            </span>
           </motion.h1>
           
           <motion.p 
-            initial={{ opacity: 0, y: 20 }}
+            initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.2 }}
-            className="text-xl text-white/90 mb-8 max-w-2xl mx-auto"
+            className="text-lg md:text-xl text-white/90 mb-4 max-w-3xl mx-auto leading-relaxed"
           >
-            Invest in premium vineyards worldwide with blockchain-certified ownership. 
-            Secure, transparent, and profitable wine investments.
+            Exclusive access to authenticated vineyard partnerships worldwide. 
+            <br className="hidden md:block" />
+            Blockchain-secured provenance meets institutional-grade wine asset management.
           </motion.p>
 
           <motion.div 
-            initial={{ opacity: 0, y: 20 }}
+            initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.4 }}
-            className="flex flex-col sm:flex-row gap-4 justify-center items-center"
+            transition={{ duration: 0.8, delay: 0.25 }}
+            className="text-center mb-12"
+          >
+            <p className="text-white/70 text-sm">
+              Minimum investment: <span className="text-gold-400 font-semibold">$999</span> | 
+              <span className="mx-2">•</span> 
+              Average annual returns: <span className="text-gold-400 font-semibold">12-18%</span> | 
+              <span className="mx-2">•</span> 
+              Accredited investors only
+            </p>
+          </motion.div>
+
+          <motion.div 
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.3 }}
+            className="flex flex-col sm:flex-row gap-6 justify-center items-center mb-16"
           >
             {!isAuthenticated ? (
               <>
-                <Link href="/auth/register" className="btn-primary text-lg px-8 py-4">
-                  Start Investing
+                <Link href="/auth/register" className="btn-primary text-lg px-10 py-4 shadow-2xl hover:shadow-gold-500/20 transition-all duration-300">
+                  <span>Request Invitation</span>
+                  <svg className="ml-3 w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                  </svg>
                 </Link>
-                <Link href="#vineyards" className="btn-secondary text-lg px-8 py-4">
-                  Explore Vineyards
+                <Link href="#vineyards" className="btn-secondary text-lg px-10 py-4 backdrop-blur-sm border-2 border-white/20 hover:border-gold-400/50 transition-all duration-300">
+                  <span>Explore Portfolio</span>
+                  <svg className="ml-3 w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+                  </svg>
                 </Link>
               </>
             ) : (
-              <Link href="/dashboard" className="btn-primary text-lg px-8 py-4">
-                View My Portfolio
+              <Link href="/dashboard" className="btn-primary text-lg px-10 py-4 shadow-2xl hover:shadow-gold-500/20 transition-all duration-300">
+                <span>Portfolio Management</span>
+                <svg className="ml-3 w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />
+                </svg>
               </Link>
             )}
           </motion.div>
+
+          {/* Key Stats */}
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.4 }}
+            className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-4xl mx-auto"
+          >
+            <div className="text-center">
+              <div className="text-3xl md:text-4xl font-bold text-white mb-2">15,000+</div>
+              <div className="text-white/80 text-sm uppercase tracking-wider">Vines Owned</div>
+            </div>
+            <div className="text-center">
+              <div className="text-3xl md:text-4xl font-bold text-white mb-2">$2.3M+</div>
+              <div className="text-white/80 text-sm uppercase tracking-wider">Total Invested</div>
+            </div>
+            <div className="text-center">
+              <div className="text-3xl md:text-4xl font-bold text-white mb-2">47</div>
+              <div className="text-white/80 text-sm uppercase tracking-wider">Partner Vineyards</div>
+            </div>
+          </motion.div>
+
+          {/* Appwrite Connection Test - Dev Only */}
+          {process.env.NODE_ENV === 'development' && (
+            <motion.div 
+              initial={{ opacity: 0, y: 30 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 0.5 }}
+              className="mt-16 p-6 bg-white/10 rounded-lg backdrop-blur-sm max-w-md mx-auto border border-white/20"
+            >
+              <h3 className="text-lg font-semibold text-white mb-4">🔧 Appwrite Connection Test</h3>
+              <button
+                onClick={sendPing}
+                disabled={isLoading}
+                className="btn-secondary w-full mb-3"
+              >
+                {isLoading ? 'Testing...' : '📡 Send a Ping'}
+              </button>
+              {pingResult && (
+                <p className="text-sm text-white/90 bg-black/20 p-3 rounded">
+                  {pingResult}
+                </p>
+              )}
+              <p className="text-xs text-white/70 mt-2">
+                Running on: http://localhost:5173
+              </p>
+            </motion.div>
+          )}
+        </div>
+
+        {/* Scroll Indicator */}
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 0.8, delay: 1 }}
+          className="absolute bottom-8 left-1/2 transform -translate-x-1/2 z-20"
+        >
+          <div className="flex flex-col items-center text-white/60">
+            <span className="text-sm mb-2 uppercase tracking-wider">Scroll to explore</span>
+            <div className="w-6 h-10 border-2 border-white/30 rounded-full flex justify-center">
+              <div className="w-1 h-3 bg-white/60 rounded-full mt-2 animate-bounce"></div>
+            </div>
+          </div>
+        </motion.div>
+      </section>
+
+      {/* Heritage Section */}
+      <section id="heritage" className="px-6 py-24 bg-gradient-to-b from-black/40 to-primary-900/30">
+        <div className="max-w-6xl mx-auto">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+            <motion.div
+              initial={{ opacity: 0, x: -50 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.8 }}
+            >
+              <div className="mb-8">
+                <span className="text-gold-400 text-sm font-medium tracking-widest uppercase">Est. 2024</span>
+                <h2 className="text-4xl md:text-5xl font-bold text-white mb-6 font-serif leading-tight">
+                  Preserving
+                  <br />
+                  <span className="text-gold-400">Terroir Legacy</span>
+                </h2>
+                <p className="text-lg text-white/80 leading-relaxed mb-8">
+                  VineVault represents the convergence of centuries-old viticultural expertise 
+                  with cutting-edge blockchain technology. Our mission transcends investment—we are 
+                  custodians of terroir heritage, ensuring authenticity and provenance 
+                  for discerning collectors worldwide.
+                </p>
+                <div className="space-y-4">
+                  <div className="flex items-start space-x-4">
+                    <div className="w-2 h-2 bg-gold-400 rounded-full mt-3"></div>
+                    <div>
+                      <h4 className="text-white font-semibold mb-1">Authenticated Provenance</h4>
+                      <p className="text-white/70 text-sm">Blockchain-verified chain of custody from vineyard to vault</p>
+                    </div>
+                  </div>
+                  <div className="flex items-start space-x-4">
+                    <div className="w-2 h-2 bg-gold-400 rounded-full mt-3"></div>
+                    <div>
+                      <h4 className="text-white font-semibold mb-1">Institutional-Grade Security</h4>
+                      <p className="text-white/70 text-sm">Multi-signature custody with insurance coverage up to $10M</p>
+                    </div>
+                  </div>
+                  <div className="flex items-start space-x-4">
+                    <div className="w-2 h-2 bg-gold-400 rounded-full mt-3"></div>
+                    <div>
+                      <h4 className="text-white font-semibold mb-1">Expert Curation</h4>
+                      <p className="text-white/70 text-sm">Master Sommelier committee with 200+ years combined experience</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </motion.div>
+            
+            <motion.div
+              initial={{ opacity: 0, x: 50 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.8, delay: 0.2 }}
+              className="relative"
+            >
+              <div className="aspect-square rounded-2xl overflow-hidden shadow-2xl">
+                <Image
+                  src="https://images.unsplash.com/photo-1574755393849-623942496936?w=600&h=600&fit=crop&crop=center"
+                  alt="VineVault Heritage - Ancient wine cellar"
+                  fill
+                  sizes="(max-width: 768px) 100vw, 50vw"
+                  className="object-cover"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent"></div>
+              </div>
+              <div className="absolute -bottom-6 -right-6 bg-gold-500 text-white px-6 py-4 rounded-xl shadow-xl">
+                <div className="text-center">
+                  <div className="text-2xl font-bold">500+</div>
+                  <div className="text-xs uppercase tracking-wider">Years Heritage</div>
+                </div>
+              </div>
+            </motion.div>
+          </div>
         </div>
       </section>
 
-      {/* Stats Section */}
-      <section className="px-6 py-16">
-        <div className="max-w-6xl mx-auto">
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
-            {stats.map((stat, index) => (
-              <motion.div 
-                key={stat.label}
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6, delay: index * 0.1 }}
-                className="wine-card text-center"
-              >
-                <div className="text-3xl font-bold text-white mb-2">
-                  {stat.value}
-                </div>
-                <div className="text-white/80">
-                  {stat.label}
-                </div>
-              </motion.div>
-            ))}
+      {/* Trust Indicators Section */}
+      <section className="px-6 py-20 bg-gradient-to-b from-primary-900/50 to-transparent">
+        <div className="max-w-6xl mx-auto text-center">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8 }}
+          >
+            <h2 className="text-2xl md:text-3xl font-bold text-white mb-4">
+              Trusted by Wine Investors Worldwide
+            </h2>
+            <p className="text-white/80 mb-12 max-w-2xl mx-auto">
+              Join a community of sophisticated investors who understand the value of premium wine assets.
+            </p>
+          </motion.div>
+
+          <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.1 }}
+              className="text-center"
+            >
+              <div className="text-4xl md:text-5xl font-bold text-gold-400 mb-2">15K+</div>
+              <div className="text-white/80 text-sm uppercase tracking-wider">Vines Owned</div>
+            </motion.div>
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.2 }}
+              className="text-center"
+            >
+              <div className="text-4xl md:text-5xl font-bold text-gold-400 mb-2">47</div>
+              <div className="text-white/80 text-sm uppercase tracking-wider">Partner Vineyards</div>
+            </motion.div>
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.3 }}
+              className="text-center"
+            >
+              <div className="text-4xl md:text-5xl font-bold text-gold-400 mb-2">4.9★</div>
+              <div className="text-white/80 text-sm uppercase tracking-wider">Customer Rating</div>
+            </motion.div>
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.4 }}
+              className="text-center"
+            >
+              <div className="text-4xl md:text-5xl font-bold text-gold-400 mb-2">$2.3M</div>
+              <div className="text-white/80 text-sm uppercase tracking-wider">Total Invested</div>
+            </motion.div>
           </div>
         </div>
       </section>
@@ -272,6 +547,7 @@ export default function HomePage() {
                     src={vineyard.image}
                     alt={vineyard.name}
                     fill
+                    sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                     className="object-cover group-hover:scale-105 transition-transform duration-300"
                   />
                   <div className="absolute top-4 right-4 bg-gold-500 text-white px-3 py-1 rounded-full text-sm font-medium">

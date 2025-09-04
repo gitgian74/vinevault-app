@@ -4,7 +4,7 @@
   "description": "Secure Wine Investment Platform with Blockchain Certification",
   "private": true,
   "scripts": {
-    "dev": "next dev",
+    "dev": "next dev -p 5173",
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
