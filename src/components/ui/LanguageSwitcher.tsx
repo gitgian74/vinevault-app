@@ -1,11 +1,11 @@
 'use client';
 
-import { useState, useRef, useEffect } from 'react';
+import { useState, useRef, useEffect, useTransition } from 'react';
 import { useRouter, usePathname } from 'next/navigation';
 import { useLocale } from 'next-intl';
 import { motion, AnimatePresence } from 'framer-motion';
-import { ChevronDownIcon, GlobeAltIcon } from '@heroicons/react/24/outline';
-import { languageConfig, type Locale } from '@/i18n/config';
+import { ChevronDownIcon, GlobeAltIcon, CheckIcon } from '@heroicons/react/24/outline';
+import { languageConfig, type Locale, locales } from '@/i18n/config';
 
 interface LanguageSwitcherProps {
   className?: string;
@@ -13,6 +13,7 @@ interface LanguageSwitcherProps {
 
 export const LanguageSwitcher: React.FC<LanguageSwitcherProps> = ({ className = '' }) => {
   const [isOpen, setIsOpen] = useState(false);
+  const [isPending, startTransition] = useTransition();
   const dropdownRef = useRef<HTMLDivElement>(null);
   const router = useRouter();
   const pathname = usePathname();
@@ -35,27 +36,30 @@ export const LanguageSwitcher: React.FC<LanguageSwitcherProps> = ({ className = 
   const handleLanguageChange = (newLocale: Locale) => {
     setIsOpen(false);
     
-    // Get current pathname without locale
-    const currentPath = pathname;
+    // Don't do anything if selecting the same language
+    if (newLocale === locale) return;
     
-    // Remove current locale from path if present
-    let pathWithoutLocale = currentPath;
-    if (currentPath.startsWith(`/${locale}`)) {
-      pathWithoutLocale = currentPath.slice(locale.length + 1) || '/';
-    }
-    
-    // Build new URL based on whether it's the default locale
-    let newUrl;
-    if (newLocale === 'it') {
-      // Italian (default) doesn't need prefix
-      newUrl = pathWithoutLocale === '/' ? '/' : pathWithoutLocale;
-    } else {
-      // Other languages need prefix
-      newUrl = `/${newLocale}${pathWithoutLocale === '/' ? '' : pathWithoutLocale}`;
-    }
-    
-    // Use window.location for full page reload to ensure proper locale loading
-    window.location.href = newUrl;
+    startTransition(() => {
+      // Get the current pathname segments
+      const segments = pathname.split('/').filter(Boolean);
+      
+      // Check if first segment is a locale
+      const hasLocalePrefix = locales.includes(segments[0] as Locale);
+      
+      // Build path without locale
+      const pathWithoutLocale = hasLocalePrefix 
+        ? '/' + segments.slice(1).join('/')
+        : pathname;
+      
+      // Create new path with correct locale handling
+      const newPath = newLocale === 'it' 
+        ? pathWithoutLocale  // Italian doesn't need prefix
+        : `/${newLocale}${pathWithoutLocale}`;  // Other languages need prefix
+      
+      // Navigate using router.push for smoother transition
+      router.push(newPath);
+      router.refresh();
+    });
   };
 
   const currentLanguage = languageConfig[locale];
@@ -64,10 +68,19 @@ export const LanguageSwitcher: React.FC<LanguageSwitcherProps> = ({ className = 
     <div className={`relative ${className}`} ref={dropdownRef}>
       <button
         onClick={() => setIsOpen(!isOpen)}
-        className="flex items-center space-x-2 px-3 py-2 rounded-lg bg-white/10 border border-white/20 text-white hover:bg-white/20 transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-gold-400/50"
+        disabled={isPending}
+        className={`flex items-center space-x-2 px-3 py-2 rounded-lg bg-white/10 border border-white/20 text-white hover:bg-white/20 transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-gold-400/50 ${
+          isPending ? 'opacity-50 cursor-wait' : ''
+        }`}
         aria-label="Change language"
+        aria-expanded={isOpen}
+        aria-haspopup="listbox"
       >
-        <GlobeAltIcon className="w-4 h-4" />
+        {isPending ? (
+          <div className="w-4 h-4 border-2 border-white/30 border-t-white rounded-full animate-spin" />
+        ) : (
+          <GlobeAltIcon className="w-4 h-4" />
+        )}
         <span className="text-sm font-medium">
           {currentLanguage.flag} {currentLanguage.nativeName}
         </span>
@@ -85,30 +98,54 @@ export const LanguageSwitcher: React.FC<LanguageSwitcherProps> = ({ className = 
             animate={{ opacity: 1, y: 0, scale: 1 }}
             exit={{ opacity: 0, y: -10, scale: 0.95 }}
             transition={{ duration: 0.15 }}
-            className="absolute top-full mt-2 right-0 min-w-48 bg-white rounded-xl shadow-xl border border-gray-200 py-2 z-50"
+            className="absolute top-full mt-2 right-0 min-w-52 bg-white rounded-xl shadow-2xl border border-gray-200 overflow-hidden z-50"
+            role="listbox"
+            aria-label="Select language"
           >
-            {Object.entries(languageConfig).map(([code, config]) => {
-              const isActive = code === locale;
-              return (
-                <button
-                  key={code}
-                  onClick={() => handleLanguageChange(code as Locale)}
-                  className={`w-full px-4 py-3 text-left flex items-center space-x-3 hover:bg-gray-50 transition-colors duration-150 ${
-                    isActive ? 'bg-primary-50 text-primary-700' : 'text-gray-700'
-                  }`}
-                  dir={config.dir}
-                >
-                  <span className="text-lg">{config.flag}</span>
-                  <div className="flex flex-col">
-                    <span className="font-medium text-sm">{config.nativeName}</span>
-                    <span className="text-xs text-gray-500">{config.name}</span>
-                  </div>
-                  {isActive && (
-                    <div className="ml-auto w-2 h-2 bg-primary-600 rounded-full"></div>
-                  )}
-                </button>
-              );
-            })}
+            <div className="py-1">
+              {Object.entries(languageConfig).map(([code, config]) => {
+                const isActive = code === locale;
+                const isRTL = config.dir === 'rtl';
+                
+                return (
+                  <button
+                    key={code}
+                    onClick={() => handleLanguageChange(code as Locale)}
+                    disabled={isActive || isPending}
+                    className={`
+                      w-full px-4 py-3 flex items-center gap-3 transition-all duration-150
+                      ${isActive 
+                        ? 'bg-primary-50 text-primary-700 cursor-default' 
+                        : 'hover:bg-gray-50 text-gray-700 hover:text-gray-900'
+                      }
+                      ${isPending && !isActive ? 'opacity-50' : ''}
+                    `}
+                    dir={config.dir}
+                    role="option"
+                    aria-selected={isActive}
+                  >
+                    <span className="text-xl flex-shrink-0">{config.flag}</span>
+                    <div className={`flex flex-col flex-1 ${isRTL ? 'text-right' : 'text-left'}`}>
+                      <span className="font-medium text-sm leading-tight">
+                        {config.nativeName}
+                      </span>
+                      <span className="text-xs text-gray-500 leading-tight">
+                        {config.name}
+                      </span>
+                    </div>
+                    {isActive && (
+                      <CheckIcon className="w-4 h-4 text-primary-600 flex-shrink-0" />
+                    )}
+                  </button>
+                );
+              })}
+            </div>
+            
+            <div className="border-t border-gray-100 px-4 py-2 bg-gray-50">
+              <p className="text-xs text-gray-500 text-center">
+                {Object.keys(languageConfig).length} languages available
+              </p>
+            </div>
           </motion.div>
         )}
       </AnimatePresence>
