@@ -1,6 +1,7 @@
 // Can be imported from a shared config  
 export const locales = ['it', 'en', 'de', 'zh', 'ja', 'ru', 'ar'] as const;
 export const defaultLocale = 'it' as const;
+export const localePrefix = 'as-needed' as const;  // Italian won't have prefix, others will
 
 export type Locale = (typeof locales)[number];
 
